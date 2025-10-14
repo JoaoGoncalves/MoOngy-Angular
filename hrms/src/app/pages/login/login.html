@@ -1,0 +1,16 @@
+<section class="login-container">
+    <h1>Login</h1>
+    <form>
+        <input type="text" name="email" placeholder="Email" [(ngModel)]='credentials.email'>
+        <input type="password" name="password" placeholder="Password" [(ngModel)]='credentials.password'>
+        <button type="submit">Login</button>
+    </form>
+
+    @if(!credentials.email || !credentials.password){
+        <p class="warning">
+            Please fill in all required fields
+        </p>
+    } @else {
+        <p>tudo ok</p>
+    }
+</section>
