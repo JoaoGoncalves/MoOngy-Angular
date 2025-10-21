@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth-service';
+import { EmployeesService } from '../../services/employees-service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,9 @@ import { AuthService } from '../../services/auth-service';
 export class Login {
   credentials = {email: '', password: ''}
 
-  constructor(private readonly authService: AuthService){}
+  constructor(
+    private readonly authService: AuthService, 
+    private readonly employeesService: EmployeesService){}
 
   submit(){
     if(this.credentials.email && this.credentials.password){
