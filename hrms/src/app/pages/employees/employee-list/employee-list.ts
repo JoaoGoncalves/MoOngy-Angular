@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { EmployeesService } from '../../../services/employees-service';
 import { AsyncPipe, NgFor, NgComponentOutlet } from '@angular/common';
 
@@ -10,13 +10,15 @@ import { AsyncPipe, NgFor, NgComponentOutlet } from '@angular/common';
 })
 export class EmployeeList {
 
-  employees$ : any;
+  private readonly employeesService = inject(EmployeesService)
+  employees$ = this.employeesService.getEmployees();
+  
   isConfirmationOpen = false;
   confirmDialog: any;
 
-  constructor(private readonly employeesService: EmployeesService){
+  /* constructor(private readonly employeesService: EmployeesService){
     this.employees$ = this.employeesService.getEmployees();
-  }
+  } */
 
   async  showConfirmationDialog(){
     // importar via lazy loading , a componente confirmation Dialog
