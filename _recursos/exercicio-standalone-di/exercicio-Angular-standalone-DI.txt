@@ -1,3 +1,5 @@
+96907379
+
 Exercicio Angular Standalone e DI:
 
 Criar um projeto do "zero", standalone, que irá consumir um modelo de dados na REST (MOOCK) API em: 
