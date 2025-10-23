@@ -7,7 +7,7 @@ import { BehaviorSubject, tap } from 'rxjs';
 })
 export class AuthService {
   private readonly http = inject(HttpClient);
-  isAuth$ = new BehaviorSubject(true);
+  isAuth$ = new BehaviorSubject(false);
 
   //constructor(private readonly http: HttpClient){}
 
@@ -21,6 +21,10 @@ export class AuthService {
     return this.http.post('https://my-json-server.typicode.com/JoaoGoncalves/hrms-api/auth/logout', {}).pipe(
       tap( () => this.isAuth$.next(false))
     )
+  }
+
+  getToken(){
+    return 'f83d28fc-870b-4e1b-89e0-d78ba8e4bf24'
   }
 
 

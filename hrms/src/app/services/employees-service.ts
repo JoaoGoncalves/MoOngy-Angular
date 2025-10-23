@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Employee } from '../infrastructure/types/employee';
 
 @Injectable(/* {
@@ -7,10 +7,16 @@ import { Employee } from '../infrastructure/types/employee';
 } */)
 export class EmployeesService {
 
-  constructor(private readonly http: HttpClient){}
+  /* constructor(private readonly http: HttpClient){} */
+  private readonly http = inject(HttpClient);
 
   getEmployees(){
     return this.http.get<Employee[]>('https://my-json-server.typicode.com/JoaoGoncalves/hrms-api/employees')
+  }
+
+
+  getEmployee(id: number){
+    return this.http.get<Employee>(`https://my-json-server.typicode.com/JoaoGoncalves/hrms-api/employees/${id}`)
   }
 
 
