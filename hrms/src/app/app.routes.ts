@@ -20,14 +20,11 @@ export const routes: Routes = [
       return m.routes;
     },
   },
-  /* {
-        path: 'employees', 
-        providers: [EmployeesService],
-        loadChildren: () => {
-            return import('./pages/employees/employees.routes')
-                .then(
-                    m => m.routes
-                )
-        }
-    } */
+  {
+    path: 'work',
+    canActivate: [authFuncGuard],
+    loadChildren: () => {
+      return import('./pages/works/works.routes').then( m => m.routes)
+    }
+  }
 ];

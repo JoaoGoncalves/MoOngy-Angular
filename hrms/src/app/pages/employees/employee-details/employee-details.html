@@ -1,5 +1,9 @@
 <section>
     <p>First Name: {{employee.firstName}}</p>
     <p>Last Name: {{employee.lastName}}</p>
-    <p>Position: {{employee.position}}</p>
+    <p appTruncate [limit]="5">Position: {{employee.position}}</p>
+    <p appTruncate>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum in at illum sit mollitia architecto, dicta veniam tempore voluptate dolorum porro magnam temporibus harum, aperiam iusto culpa corporis omnis eos.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum in at illum sit mollitia architecto, dicta veniam tempore voluptate dolorum porro magnam temporibus harum, aperiam iusto culpa corporis omnis eos.
+    </p>
 </section>

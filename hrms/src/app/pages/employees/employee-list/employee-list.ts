@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { EmployeesService } from '../../../services/employees-service';
 import { AsyncPipe, NgFor, NgComponentOutlet } from '@angular/common';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-employee-list',
-  imports: [NgFor, AsyncPipe, NgComponentOutlet],
+  imports: [NgFor, AsyncPipe, NgComponentOutlet, RouterLink],
   templateUrl: './employee-list.html',
   styleUrl: './employee-list.css'
 })

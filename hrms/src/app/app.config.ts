@@ -1,19 +1,20 @@
 import { ApplicationConfig, importProvidersFrom, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { routes } from './app.routes';
 import { HttpClientModule, provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 import { authInterceptor } from './shared/interceptors/auth-interceptor';
+import { TruncateLimit } from './shared/directives/truncate';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
+    provideRouter(routes, withComponentInputBinding()),
     /* importProvidersFrom(HttpClientModule), */
     provideHttpClient(
       withInterceptors([authInterceptor]),
     ),
-
+    {provide: TruncateLimit, useValue: 50}
   ]
 };

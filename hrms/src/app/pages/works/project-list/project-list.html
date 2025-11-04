@@ -1,0 +1,3 @@
+<section>
+    <app-project-card *ngFor="let project of projects$ | async" [projectId]="project.id"></app-project-card>
+</section>

@@ -7,7 +7,7 @@ import { BehaviorSubject, tap } from 'rxjs';
 })
 export class AuthService {
   private readonly http = inject(HttpClient);
-  isAuth$ = new BehaviorSubject(false);
+  isAuth$ = new BehaviorSubject(true);
 
   //constructor(private readonly http: HttpClient){}
 
