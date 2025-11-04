@@ -26,5 +26,13 @@ export const routes: Routes = [
     loadChildren: () => {
       return import('./pages/works/works.routes').then( m => m.routes)
     }
+  },
+  {
+    path: 'recruitment',
+    canActivate: [authFuncGuard],
+    loadChildren: async () => {
+      const m = await import('./pages/recruitment/recruitment.routes');
+      return m.routes;
+    }
   }
 ];
