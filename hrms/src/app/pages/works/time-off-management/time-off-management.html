@@ -1,0 +1,29 @@
+<h2>Time Off Management</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Comment</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let request of requests()">
+            <td>{{ request.employeeId }}</td>
+            <td>{{ request.startDate | date }}</td>
+            <td>{{ request.endDate | date }}</td>
+            <td>{{ request.type }}</td>
+            <td>{{ request.status }}</td>
+            <td>{{ request.comment }}</td>
+            <td>
+                <button *ngIf="request.status === 'Pending'" (click)="approveRequest(request)">Approve</button>
+                <button *ngIf="request.status === 'Pending'" (click)="rejectRequest(request)">Reject</button>
+                <button (click)="deleteRequest(request)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

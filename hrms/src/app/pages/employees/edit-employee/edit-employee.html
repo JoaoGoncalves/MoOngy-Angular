@@ -1,1 +1,12 @@
-<p>edit-employee works!</p>
+<div>
+    <h1>Edit</h1>
+    <form [formGroup]="form">
+        <input type="text" placeholder="firstName" formControlName="firstName">
+        <input type="text" placeholder="lastName" formControlName="lastName">
+        <input type="text" placeholder="Email" formControlName="email">
+        <input type="text" placeholder="position" formControlName="position">
+        <input type="text" placeholder="level" formControlName="level">
+
+        <button type="submit">save</button>
+    </form>
+</div>
