@@ -10,7 +10,7 @@ export class BookService {
 
 
   // state 
-  books = signal<Book[]>([]);
+/*   books = signal<Book[]>([]); */
 
   getBooks() {
     return this.http.get<Book[]>('https://my-json-server.typicode.com/JoaoGoncalves/biblio-api/books')

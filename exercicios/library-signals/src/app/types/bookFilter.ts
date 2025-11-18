@@ -1,0 +1,1 @@
+export type BookFilter = 'all' | 'read' | 'not-read';
