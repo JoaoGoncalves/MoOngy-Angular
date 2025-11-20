@@ -9,14 +9,14 @@ export class CandidateService {
   private readonly http = inject(HttpClient);
 
   getCandidates() {
-    return this.http.get<Candidate[]>('https://my-json-server.typicode.com/JoaoGoncalves/hrms-api/candidates');
+    return this.http.get<Candidate[]>('/candidates');
   }
 
   getCandidatesByName(name: string) {
-    return this.http.get<Candidate[]>(`https://my-json-server.typicode.com/JoaoGoncalves/hrms-api/candidates?firstName_like=${name}`);
+    return this.http.get<Candidate[]>(`/candidates?firstName_like=${name}`);
   }
 
   getCandidate(id: number) {
-    return this.http.get<Candidate>(`https://my-json-server.typicode.com/JoaoGoncalves/hrms-api/candidates/${id}`);
+    return this.http.get<Candidate>(`/candidates/${id}`);
   }
 }

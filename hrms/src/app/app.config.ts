@@ -5,6 +5,7 @@ import { routes } from './app.routes';
 import { HttpClientModule, provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 import { authInterceptor } from './shared/interceptors/auth-interceptor';
 import { TruncateLimit } from './shared/directives/truncate';
+import { apiUrlInterceptor } from './shared/interceptors/api-url-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,7 +14,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withComponentInputBinding()),
     /* importProvidersFrom(HttpClientModule), */
     provideHttpClient(
-      withInterceptors([authInterceptor]),
+      withInterceptors([authInterceptor, apiUrlInterceptor]),
     ),
     {provide: TruncateLimit, useValue: 50}
   ]

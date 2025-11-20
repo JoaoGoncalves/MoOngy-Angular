@@ -1,7 +1,9 @@
-import { Component, computed, effect, signal } from '@angular/core';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { TimeOffRequest } from '../../../infrastructure/types/time-off-request.type';
 import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TimeOffRequestService } from '../../../services/time-off-request-service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-time-off-management',
@@ -10,42 +12,17 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './time-off-management.css',
 })
 export class TimeOffManagement {
+  private readonly timeOffRequestService = inject(TimeOffRequestService);
+  requests = toSignal(this.timeOffRequestService.getRequests(), {initialValue: []})
+
+
   constructor() {
-    // 1 effect
-    /* const count = signal (10);
-    const increment = () => count.update( v => v + 1);
-
-    increment();
-    increment();
-
-    effect(() => {
-      console.log(`count : `, count());
-    }) */
 
     effect(() => {
       localStorage.setItem('selectedType', this.selectedType());
     });
   }
 
-  requests = signal<TimeOffRequest[]>([
-    {
-      id: 1,
-      employeeId: 1,
-      startDate: new Date().toISOString(),
-      endDate: new Date().toISOString(),
-      type: 'Vacation',
-      status: 'Pending',
-    },
-    {
-      id: 2,
-      employeeId: 2,
-      startDate: new Date().toISOString(),
-      endDate: new Date().toISOString(),
-      type: 'Sick Leave',
-      status: 'Approved',
-      comment: 'Feeling pretty sick today :(',
-    },
-  ]);
 
   resolvedRequests = computed(() => this.requests().filter((r) => r.status !== 'Pending'));
 
@@ -59,20 +36,20 @@ export class TimeOffManagement {
   });
 
   approveRequest(request: TimeOffRequest) {
-    this.requests.update((requests) => {
+    /* this.requests.update((requests) => {
       const index = requests.findIndex((r) => r.id === request.id);
       return requests.map((item, i) => (i === index ? { ...item, status: 'Approved' } : item));
-    });
+    }); */
   }
 
   rejectRequest(request: TimeOffRequest) {
-    this.requests.update((requests) => {
+    /* this.requests.update((requests) => {
       const index = requests.findIndex((r) => r.id === request.id);
       return requests.map((item, i) => (i === index ? { ...item, status: 'Rejected' } : item));
-    });
+    }); */
   }
 
   deleteRequest(request: TimeOffRequest) {
-    this.requests.update((requests) => requests.filter((r) => r.id !== request.id));
+    //this.requests.update((requests) => requests.filter((r) => r.id !== request.id));
   }
 }

@@ -12,13 +12,13 @@ export class AuthService {
   //constructor(private readonly http: HttpClient){}
 
   login(credentials: {email:string, password: string}){
-    return this.http.post('https://my-json-server.typicode.com/JoaoGoncalves/hrms-api/auth/login', {credentials}).pipe(
+    return this.http.post('/auth/login', {credentials}).pipe(
       tap( () => this.isAuth$.next(true))
     )
   }
 
   logout(){
-    return this.http.post('https://my-json-server.typicode.com/JoaoGoncalves/hrms-api/auth/logout', {}).pipe(
+    return this.http.post('/auth/logout', {}).pipe(
       tap( () => this.isAuth$.next(false))
     )
   }

@@ -9,15 +9,15 @@ export class ProjectService {
   http = inject(HttpClient);
 
     getProject(id: number) {
-        return this.http.get<Project>(`https://my-json-server.typicode.com/JoaoGoncalves/hrms-api/projects/${id}`);
+        return this.http.get<Project>(`/projects/${id}`);
     }
 
     getProjects() {
-        return this.http.get<Project[]>(`https://my-json-server.typicode.com/JoaoGoncalves/hrms-api/projects`);
+        return this.http.get<Project[]>(`/projects`);
     }
 
     getProjectsByEmployeeId(employeeId: number) {
-        return this.http.get<Project[]>(`https://my-json-server.typicode.com/JoaoGoncalves/hrms-api/projects?employees_like=${employeeId}`);
+        return this.http.get<Project[]>(`/projects?employees_like=${employeeId}`);
     }
   
 }

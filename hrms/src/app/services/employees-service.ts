@@ -11,12 +11,12 @@ export class EmployeesService {
   private readonly http = inject(HttpClient);
 
   getEmployees(){
-    return this.http.get<Employee[]>('https://my-json-server.typicode.com/JoaoGoncalves/hrms-api/employees')
+    return this.http.get<Employee[]>('/employees')
   }
 
 
   getEmployee(id: number){
-    return this.http.get<Employee>(`https://my-json-server.typicode.com/JoaoGoncalves/hrms-api/employees/${id}`)
+    return this.http.get<Employee>(`/employees/${id}`)
   }
 
 

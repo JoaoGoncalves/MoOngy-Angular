@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { Footer } from "./shared/components/footer/footer";
 import { FileUpload } from "./shared/components/file-upload/file-upload";
 import { BehaviorSubject, filter, from, interval, map, Observable, of, Subject, take } from 'rxjs';
+import { ToObservableComponent } from "./pages/examples/to-observable-component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Footer/* , FileUpload */],
+  imports: [RouterOutlet, Footer /* , FileUpload */, ToObservableComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
