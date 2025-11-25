@@ -17,6 +17,10 @@ export class Header {
 
   notificationsOpen = signal(false);
 
+  constructor(){
+    this.notificationService.connect();
+  }
+
   markNotificationAsRead(notification: Notification){
     this.notificationService.markAsRead(notification);
   }

@@ -1,10 +1,14 @@
-import { computed, effect, Injectable, signal } from '@angular/core';
+import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { Notification } from '../infrastructure/types/notification';
+import { SocketService } from './socket-service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NotificationService {
+  private readonly socketService = inject(SocketService);
+
   #notifications = signal<Notification[]>(
     JSON.parse(localStorage.getItem('notifications') ?? '[]')
   );
@@ -17,6 +21,16 @@ export class NotificationService {
     effect(() => {
       localStorage.setItem('notifications', JSON.stringify(this.#notifications()));
     });
+  }
+
+  connect(){
+    return this.socketService.notifications$.pipe(
+      takeUntilDestroyed()
+    ).subscribe(
+      notifications => {
+        this.#notifications.update( old => [...old, notifications])
+      }
+    )
   }
 
   addNotification(notification: Notification) {
