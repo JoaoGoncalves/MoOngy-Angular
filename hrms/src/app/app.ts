@@ -5,10 +5,11 @@ import { SignalEquality } from "./pages/examples/signal-equality";
 import { Untracked } from "./pages/examples/untracked";
 import { UntrackedEffect } from './pages/examples/untracked-effect';
 import { CleanupEffect } from './pages/examples/cleanup-effect';
+import { Header } from "./shared/components/header/header";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Footer,CleanupEffect],
+  imports: [RouterOutlet, Footer, Header],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
