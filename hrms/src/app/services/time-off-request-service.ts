@@ -10,11 +10,11 @@ export class TimeOffRequestService {
   private readonly http = inject(HttpClient);
 
   getRequests(query = '') {
-    return this.http.get<TimeOffRequest[]>('/time-off-requests');
+    return this.http.get<TimeOffRequest[]>('/timeOffRequests');
   }
 
   getRequestsByType(query = '') {
-    return this.http.get<TimeOffRequest[]>('/time-off-requests').pipe(
+    return this.http.get<TimeOffRequest[]>('/timeOffRequests').pipe(
         map((requests) => {
             return query === ''
               ? requests
@@ -24,14 +24,14 @@ export class TimeOffRequestService {
   }
 
   rejectRequest(id: number) {
-    return this.http.patch(`/time-off-requests/${id}`, { status: 'Rejected' });
+    return this.http.patch(`/timeOffRequests/${id}`, { status: 'Rejected' });
   }
 
   approveRequest(id: number) {
-    return this.http.patch(`/time-off-requests/${id}`, { status: 'Approved' });
+    return this.http.patch(`/timeOffRequests/${id}`, { status: 'Approved' });
   }
 
   deleteRequest(id: number) {
-    return this.http.delete(`/time-off-requests/${id}`);
+    return this.http.delete(`/timeOffRequests/${id}`);
   }
 }

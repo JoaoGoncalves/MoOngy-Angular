@@ -1,14 +1,24 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { Constants } from '../contants';
+import { CONSTANTS } from '../contants';
 
 export const apiUrlInterceptor: HttpInterceptorFn = (req, next) => {
 
-  const constants = inject(Constants);
-  const url = req.url;
+  const constants = inject(CONSTANTS);
 
-  const newUrl  = constants.apiUrl + url;
-  const newReq = req.clone({url : newUrl})
+
+  // if the request already has a full URL (e.g. "http://", "https://") — skip
+  if (/^https?:\/\//i.test(req.url)) {
+    return next(req);
+  }
+
+  // normalize base and path:
+  const base = constants.apiUrl.replace(/\/$/, '');  // remove slash final
+  const path = req.url.replace(/^\//, '');           // remove slash inicial
+
+  const newUrl = `${constants.apiUrl}${req.url}`;
+  const newReq = req.clone({ url: newUrl });
 
   return next(newReq);
+
 };

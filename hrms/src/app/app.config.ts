@@ -6,6 +6,7 @@ import { HttpClientModule, provideHttpClient, withInterceptors, withInterceptors
 import { authInterceptor } from './shared/interceptors/auth-interceptor';
 import { TruncateLimit } from './shared/directives/truncate';
 import { apiUrlInterceptor } from './shared/interceptors/api-url-interceptor';
+import { CONSTANTS } from './shared/contants';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,6 +17,13 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptors([authInterceptor, apiUrlInterceptor]),
     ),
-    {provide: TruncateLimit, useValue: 50}
+    {provide: TruncateLimit, useValue: 50},
+    {
+      provide: CONSTANTS,
+      useValue: {
+        /* apiUrl: 'https://my-json-server.typicode.com/JoaoGoncalves/hrms-api', */
+        apiUrl: 'http://localhost:3000',
+      }
+    }
   ]
 };
