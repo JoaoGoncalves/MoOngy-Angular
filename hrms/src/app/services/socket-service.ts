@@ -8,7 +8,7 @@ export class SocketService {
 
   //notifications$ = interval(5000).pipe(map(  ()=> [] ), tap( ()=>console.log('Notification Emited')))
 
-  notifications$ = interval(10_000).pipe(
+  notifications$ = interval(20_000).pipe(
     map((i) => {
       return {
         id: i,
