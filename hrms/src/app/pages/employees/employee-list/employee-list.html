@@ -12,11 +12,15 @@
             <td>{{ employee.firstName }} {{ employee.lastName }}</td>
             <td>{{ employee.position }}</td>
             <td>
-                <button (click)="showConfirmationDialog()">Delete</button>
+                <button (click)="isConfirmationOpen = true" #deleteBtn >Delete</button>
                 <a [routerLink]="['/employees', 'details', employee.id]">details</a>
+                @defer (on interaction(deleteBtn)) {
+        <app-confirmation-dialog [isConfirmationOpen]="isConfirmationOpen"/>
+    }
             </td>
         </tr>
     </tbody>
-    <ng-container *ngComponentOutlet="confirmDialog"></ng-container>
+    
+    <!-- <ng-container *ngComponentOutlet="confirmDialog"></ng-container> -->
     
 </table>

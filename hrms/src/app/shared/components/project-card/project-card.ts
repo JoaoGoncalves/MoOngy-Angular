@@ -6,7 +6,7 @@ import { AsyncPipe, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-project-card',
-  imports: [NgIf, AsyncPipe],
+  imports: [ AsyncPipe],
   templateUrl: './project-card.html',
   styleUrl: './project-card.css'
 })

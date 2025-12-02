@@ -7,13 +7,27 @@
 <dialog [open]="notificationsOpen()">
     <h3>Notifications</h3>
     <ul>
-        <li *ngFor="let notification of notifications()">
-            <h4>{{ notification.title }}</h4>
-            <span>{{ notification.message }}</span>
-            <button *ngIf="!notification.read" (click)="markNotificationAsRead(notification)">
-                Mark as Read
-            </button>
-        </li>
+        @for (notification of notifications(); track notification.id) {
+            
+            <li>
+                <h4>{{ notification.title }} - {{$index}} / {{$count}}</h4>
+                <span>{{ notification.message }}</span>
+                
+                @if (!notification.read) {
+                    <button (click)="markNotificationAsRead(notification)">
+                        Mark as Read
+                    </button>
+                } @else {
+                    <span> ✅ </span>
+                }
+
+            </li>
+
+        } @empty {
+
+            <li>NO Notification to display...</li>
+
+        }
     </ul>
     <button (click)="notificationsOpen.set(false)">Close</button>
 </dialog>

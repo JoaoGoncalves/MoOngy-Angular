@@ -1,6 +1,11 @@
-<div *ngIf="project$ | async as project" class="card">
-    <img [src]="project.image" width="200" />
-    <div class="card-body">
-        <h3>{{ project.name }}</h3>
+@if (project$ | async ; as project) {
+
+    <div class="card">
+        <img [src]="project.image" width="200" />
+        <div class="card-body">
+            <h3>{{ project.name }}</h3>
+        </div>
+        <hr>
     </div>
-</div>
+    
+}

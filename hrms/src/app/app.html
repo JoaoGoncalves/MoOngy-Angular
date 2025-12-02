@@ -14,5 +14,14 @@
     <hr>
     <router-outlet></router-outlet>
   </section>
-  <app-footer></app-footer>
+ <!--  @defer (on viewport; prefetch on timer(5s)) { -->
+  @defer (on timer(5s)) {
+    <app-footer></app-footer>
+  } @placeholder {
+      <div>Footer</div>
+  } @loading {
+    <p>Loading .....</p>
+  } @error {
+    <p>ocorreu um erro .....</p>
+  }
 </main>
