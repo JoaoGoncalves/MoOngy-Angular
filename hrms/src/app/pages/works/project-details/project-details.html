@@ -1,16 +1,18 @@
 <div class="project-details">
-      <h3>Project Details</h3>
-      <div *ngIf="project$ | async as project">
-        <p>Project Name: {{ project.name }}</p>
-        <p>Project Description: {{ project.description }}</p>
-        <p>Logo: {{ project.image }}</p>
-        <div class="subprojects">
-          <span>Subprojects:</span>
-          <app-project-card
-            *ngFor="let subProjectId of project.subProjectIds"
-            [projectId]="subProjectId"
-          >
+  <h3>Project Details</h3>
+  @if (project() ; as project) {
+    <div>
+      <p>Project Name: {{ project.name }}</p>
+      <p>Project Description: {{ project.description }}</p>
+      <p>Logo: {{ project.image }}</p>
+      <div class="subprojects">
+        <span>Subprojects:</span>
+        @for ( subProjectId of project.subProjectIds; track subProjectId) {
+          <app-project-card [projectId]="subProjectId">
           </app-project-card>
-        </div>
+        }
       </div>
     </div>
+  }
+
+</div>

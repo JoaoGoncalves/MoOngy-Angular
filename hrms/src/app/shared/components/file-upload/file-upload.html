@@ -1,13 +1,19 @@
 <div class="file-upload">
-    <label for="upload">{{ label }}</label>
+    <label for="upload">{{ label() }}</label>
     <input type="file" id="upload" (change)="onFileSelected($event)" />
-    <span class="error" *ngIf="errorMessage">
-        {{ errorMessage }}
-        Only the following file types are permitted:
-        <ul>
-            <li *ngFor="let type of accept">
-                {{ type }}
-            </li>
-        </ul>
-    </span>
+
+    @if (errorMessage) {
+
+        <span class="error">
+            {{ errorMessage }}
+            Only the following file types are permitted:
+            <ul>
+                @for (type of accept(); track type) {
+                    <li>
+                        {{ type }}
+                    </li>
+                }
+            </ul>
+        </span>
+    }
 </div>

@@ -1,5 +1,5 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, input, Input, output, Output } from '@angular/core';
 
 @Component({
   selector: 'app-file-upload',
@@ -8,9 +8,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './file-upload.css',
 })
 export class FileUpload {
-  @Input({ required: true }) label!: string;
+  /* @Input({ required: true }) label!: string;
   @Input({transform: (val: string) => val.split(',')}) accept: string[] = [];
-  @Output() selected = new EventEmitter<FileList>();
+  @Output() selected = new EventEmitter<FileList>(); */
+  label = input.required<string>();
+  accept = input([],  {transform: (val: string) => val.split(',')});
+  selected = output<FileList>();
+
   errorMessage = '';
 
   /* get acceptArray() {
@@ -19,7 +23,7 @@ export class FileUpload {
 
   onFileSelected(event: any) {
     const files: FileList = event.target.files;
-    this.errorMessage = Array.from(files).every((f) => this.accept.includes(f.type))
+    this.errorMessage = Array.from(files).every((f) => this.accept().includes(f.type))
       ? ''
       : 'Invalid file type';
 

@@ -6,10 +6,13 @@ import { Untracked } from "./pages/examples/untracked";
 import { UntrackedEffect } from './pages/examples/untracked-effect';
 import { CleanupEffect } from './pages/examples/cleanup-effect';
 import { Header } from "./shared/components/header/header";
+import { Zone1 } from "./pages/examples/zone1";
+import { Zone2 } from "./pages/examples/zone2";
+import { FileUpload } from "./shared/components/file-upload/file-upload";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Footer, Header],
+  imports: [RouterOutlet, Footer, Header, FileUpload],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
